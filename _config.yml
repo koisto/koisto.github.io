@@ -1,6 +1,6 @@
 title: koisto
 logo:
 description: Firmware, Software etc.
-show_downloads: flase
+show_downloads: false
 google_analytics:
 theme: jekyll-theme-minimal
