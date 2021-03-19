@@ -337,7 +337,7 @@ root.txt
 ### Using searchsploit
 The version of a particular application can be given to searchsploit to narrow down applicable exploits.
 ```
-$ searchsploit CMS Made Simple 2.2.8                                                             2 ⨯
+$ searchsploit CMS Made Simple 2.2.8
 --------------------------------------------------------------------- ---------------------------------
  Exploit Title                                                       |  Path
 --------------------------------------------------------------------- ---------------------------------
@@ -356,7 +356,7 @@ I was keen to find out how to crack the hash without using the crack and wordlis
 And then crack with hashcat.
 
 ```
-$ hashcat -v -a 0 -m 20 pw.txt /usr/share/wordlists/rockyou.txt -O                                                                                              130 ⨯
+$ hashcat -v -a 0 -m 20 pw.txt /usr/share/wordlists/rockyou.txt -O
 hashcat (v6.1.1) starting...
 
 OpenCL API (OpenCL 1.2 pocl 1.6, None+Asserts, LLVM 9.0.1, RELOC, SLEEF, DISTRO, POCL_DEBUG) - Platform #1 [The pocl project]
