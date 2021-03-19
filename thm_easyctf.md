@@ -1,6 +1,6 @@
 # Try Hack Me - Simple CTF
 
-https://tryhackme.com/room/easyctf
+[https://tryhackme.com/room/easyctf]
 
 This CTF was carried out using a local install of Kali Linux. The machine to be exploited was accessed by VPN.
 
@@ -125,8 +125,8 @@ $ searchsploit -p 46627
      Path: /usr/share/exploitdb/exploits/php/remote/46627.rb
 File Type: Ruby script, ASCII text, with CRLF line terminators
 ```
-Specifically this made use of ruby and Metasploit which seemed perhaps too complicated for an introductory CTF. At this point I did a google search for other walkthroughs and [https://kalana-dananjaya.medium.com/easyctf-writeup-pentesting-cb756f0e7dbd
-]. This seemed to indicate that where perhaps more venerabilites so I returned to searchsploit.
+Specifically this made use of ruby and Metasploit which seemed perhaps too complicated for an introductory CTF. At this point I did a google search for other walkthroughs and [[https://kalana-dananjaya.medium.com/easyctf-writeup-pentesting-cb756f0e7dbd
+]]. This seemed to indicate that where perhaps more venerabilites so I returned to searchsploit.
 ```
 $ searchsploit cms made simple
 ------------------------------------------------- ---------------------------------
