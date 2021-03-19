@@ -4,8 +4,6 @@
 
 This CTF was carried out using a local install of Kali Linux. The machine to be exploited was accessed by VPN.
 
-Ip address 10.10.199.87
-
 ## Initial enumeration with nmap
 
 An intial scan of the services running on the machine was carried out using namp.
