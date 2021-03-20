@@ -1,6 +1,6 @@
 # Try Hack Me - Simple CTF
 
-[https://tryhackme.com/room/easyctf](https://tryhackme.com/room/easyctf)
+This is a walkthrough of the [Simple CTF Room](https://tryhackme.com/room/easyctf) from [Try Hack Me](https://tryhackme.com/).
 
 This CTF was carried out using a local install of Kali Linux. The machine to be exploited was accessed by VPN.
 
@@ -262,7 +262,7 @@ $ python 46635.py -u http://$IPADDR/simple --crack -w /usr/share/seclists/Passwo
 ```
 
 ## Logging in using ssh
-So now with a user anme and password I was able to login to the machine using ssh.
+So now with a username and password I was able to login to the machine using ssh.
 
 ```
 $ ssh mitch@10.10.199.87 -p 2222
