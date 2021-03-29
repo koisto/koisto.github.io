@@ -116,3 +116,24 @@ View the contents of log.txt using less
 ```bash
 $ less log.txt
 ```
+Key information from log.txt
+```txt
+# log.txt
+
+...
+Your identification has been saved in /home/kenobi/.ssh/id_rsa.
+Your public key has been saved in /home/kenobi/.ssh/id_rsa.pub.
+...
+# This is a basic ProFTPD configuration file (rename it to 
+# 'proftpd.conf' for actual use.  It establishes a single server
+# and a single anonymous login.  It assumes that you have a user/group
+# "nobody" and "ftp" for normal operation and anon.
+
+ServerName                      "ProFTPD Default Installation"
+...
+
+```
+We have the location of kenobi's ssh keys and also the name of the FTP server.
+
+
+
