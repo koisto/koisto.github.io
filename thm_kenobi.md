@@ -10,7 +10,7 @@ Once the kenobi virtual machine started and the IP address was displayed I assig
 $ IPADDR=<ip address of vm given by tryhackme>
 ```
 ## Initial scan for open ports
-An initial scan of open TCP ports on the machine was carried oout using nmap.
+An initial scan of open TCP ports on the machine was carried out using nmap.
 
 ```bash
 $ nmap -sT -oN nmap_ports.txt $IPADDR
@@ -36,3 +36,52 @@ PORT     STATE SERVICE
 
 # Nmap done at Wed Mar 24 09:53:48 2021 -- 1 IP address (1 host up) scanned in 0.91 seconds
 ```
+## Enumeration of SMB shares
+Using the built in scripting features of nmap the SMB shares and users are enumerated.
+
+```bash
+$ nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse -oN nmap_snb.txt $IPADDR
+```
+
+```txt
+# nmap_snb.txt
+
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-03-24 09:55 GMT
+Nmap scan report for 10.10.203.161
+Host is up (0.029s latency).
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+
+Host script results:
+| smb-enum-shares: 
+|   account_used: guest
+|   \\10.10.203.161\IPC$: 
+|     Type: STYPE_IPC_HIDDEN
+|     Comment: IPC Service (kenobi server (Samba, Ubuntu))
+|     Users: 2
+|     Max Users: <unlimited>
+|     Path: C:\tmp
+|     Anonymous access: READ/WRITE
+|     Current user access: READ/WRITE
+|   \\10.10.203.161\anonymous: 
+|     Type: STYPE_DISKTREE
+|     Comment: 
+|     Users: 0
+|     Max Users: <unlimited>
+|     Path: C:\home\kenobi\share
+|     Anonymous access: READ/WRITE
+|     Current user access: READ/WRITE
+|   \\10.10.203.161\print$: 
+|     Type: STYPE_DISKTREE
+|     Comment: Printer Drivers
+|     Users: 0
+|     Max Users: <unlimited>
+|     Path: C:\var\lib\samba\printers
+|     Anonymous access: <none>
+|_    Current user access: <none>
+
+Nmap done: 1 IP address (1 host up) scanned in 6.31 seconds
+```
+The anonymous share maps onto a folder under kenobi's account.
+
