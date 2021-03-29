@@ -16,19 +16,19 @@ Nebula is a Linux virtual machine designed to demonstrate a number of weaknesses
 
 
 
-# Level 00
+### Level 00
 
 
 
-# Level 01
+### Level 01
 
 
 
-# Level 02
+### Level 02
 
 
 
-# Level 03
+### Level 03
 
 
 
