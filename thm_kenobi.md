@@ -85,3 +85,34 @@ Nmap done: 1 IP address (1 host up) scanned in 6.31 seconds
 ```
 The anonymous share maps onto a folder under kenobi's account.
 
+## Examining SMB share
+Login to the anonymous share and list directory contents.
+
+```bash
+$ smbclient //10.10.203.161/anonymous
+Enter WORKGROUP\james's password: 
+Try "help" to get a list of possible commands.
+smb: \> ls
+  .                                   D        0  Wed Sep  4 11:49:09 2019
+  ..                                  D        0  Wed Sep  4 11:56:07 2019
+  log.txt                             N    12237  Wed Sep  4 11:49:09 2019
+
+		9204224 blocks of size 1024. 6877108 blocks available
+smb: \> 
+```
+
+Download the contents of the share (a single file called log.txt)
+
+```bash
+$ smbget -R  smb://10.10.203.161/anonymous                                                                                                                         1 ⨯
+Password for [james] connecting to //anonymous/10.10.203.161: 
+Using workgroup WORKGROUP, user james
+smb://10.10.203.161/anonymous/log.txt                                                                                                                                    
+Downloaded 11.95kB in 2 seconds
+```
+
+## log.txt
+View the contents of log.txt using less
+```bash
+$ less log.txt
+```
