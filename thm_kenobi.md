@@ -153,22 +153,7 @@ PORT    STATE SERVICE
 Nmap done: 1 IP address (1 host up) scanned in 1.37 seconds
 ```
 The /var directory is mounted using nfs.
-```
-$ nc 10.10.158.95 21
-220 ProFTPD 1.3.5 Server (ProFTPD Default Installation) [10.10.158.95]
-```
 
-```
-$ searchsploit proftpd 1.3.5
---------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
- Exploit Title                                                                                                                         |  Path
---------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
-ProFTPd 1.3.5 - 'mod_copy' Command Execution (Metasploit)                                                                              | linux/remote/37262.rb
-ProFTPd 1.3.5 - 'mod_copy' Remote Command Execution                                                                                    | linux/remote/36803.py
-ProFTPd 1.3.5 - File Copy                                                                                                              | linux/remote/36742.txt
---------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
-Shellcodes: No Results
-```
 ## Finding an exploit
 Using netcat we can login to the FTP server on port 21 to establich the version of ProFTPD.
 ```
@@ -363,6 +348,4 @@ Finally we can get the root flag.
 ```
 cat /root/root.txt
 [FLAG NOT SHOWN]
-
-
-
+```
