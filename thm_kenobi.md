@@ -88,8 +88,8 @@ The anonymous share maps onto a folder under kenobi's account.
 ## Examining SMB share
 Login to the anonymous share and list directory contents.
 
-```bash
-$ smbclient //10.10.203.161/anonymous
+```
+$ smbclient //$IPADDR/anonymous
 Enter WORKGROUP\james's password: 
 Try "help" to get a list of possible commands.
 smb: \> ls
@@ -103,8 +103,8 @@ smb: \>
 
 Download the contents of the share (a single file called log.txt)
 
-```bash
-$ smbget -R  smb://10.10.203.161/anonymous                                                                                                                         
+```
+$ smbget -R  smb://$IPADDR/anonymous                                                                                                                         
 Password for [james] connecting to //anonymous/10.10.203.161: 
 Using workgroup WORKGROUP, user james
 smb://10.10.203.161/anonymous/log.txt                                                                                                                                    
@@ -139,7 +139,7 @@ We have the location of kenobi's ssh keys and also the name of the FTP server.
 Using the built in scripting features of nmap we can enumerate the NFS service.
 
 ```
-$ nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount 10.10.203.161
+$ nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount $IPADDR
 
 Starting Nmap 7.91 ( https://nmap.org ) at 2021-03-24 10:05 GMT
 Nmap scan report for 10.10.203.161
