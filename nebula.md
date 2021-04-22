@@ -17,9 +17,9 @@ The username and password for each level take  the form 'levelnn' where nn is th
 [Level 00](#level-00)  
 [Level 01](#level-01)  
 [Level 02](#level-02)  
-[Level 03](#level-03) 
+[Level 03](#level-03)  
 [Level 04](#level-04)  
-[Level 05](#level-05) 
+[Level 05](#level-05)  
 
 ### Level 00
 
