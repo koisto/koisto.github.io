@@ -2,11 +2,11 @@
 
 ## Introduction
 
-I first heard about the [PwnAdventure](https://www.pwnadventure.com/) from [LiveOverflow's series](https://www.youtube.com/playlist?list=PLhixgUqwRTjzzBeFSHXrw9DnQtssdAwgG) on the hackable game. In short this is a role playing game which is designed to be exploited and was originally developed as part of a CTF.  
+I first heard about [PwnAdventure](https://www.pwnadventure.com/) from [LiveOverflow's series](https://www.youtube.com/playlist?list=PLhixgUqwRTjzzBeFSHXrw9DnQtssdAwgG) on the hackable game. In short this is a role playing game which is designed to be exploited and was originally developed as part of a CTF.  
 
 ## Client and Server setup
 
-It's 2022 and I decided that I wanted to explore the game and it's venerabilities for myself, the game was originally developed for Ghost in the Shellcode 2015 so I faced a few challnges getting everything to work. I am using Xubuntu 22.04.1.
+It's 2022 and I decided that I wanted to explore the game and it's vulnerabilities for myself, the game was originally developed for Ghost in the Shellcode 2015 so I faced a few challenges getting everything to work. I am using Xubuntu 22.04.
 
 To set up the server I followed the [instructions provided by LiveOverflow](https://github.com/LiveOverflow/PwnAdventure3#option-3---docker) to set the server up in a docker container. The only issue I faced was that I needed to create a folder name `postrges-data` in the root of the repo to make the server run according to the instructions.
 
@@ -14,7 +14,7 @@ I had more difficulty getting the client to run. I downloaded the [Linux Client]
 
 My first solution was to try and run the client in a VirtualBox VM using Ubuntu 14.04, this satisfied the libssl dependency but the client wouldn't run because VirtualBox doesn't support OpenGL3. I then attempted to run the game client in a docker container based on Ubuntu 14.04 and once again I ran into issues satisfying the graphics dependencies. I think with a little bit more persistance I could have succeeded with this approach. 
 
-The final solution was to take libssl and libcrypto from the Ubuntu 14.04 VM I had created previously and copy them to the same directory as the game binary on my host machine. This meant that I avoided installing these older libraries system wide. Had I not previously created the VM I would have resorted to either downloading the missing libraries from elsewhere or buidling from source.
+The final solution was to take libssl and libcrypto from the Ubuntu 14.04 VM I had created previously and copy them to the same directory as the game binary on my host machine. This meant that I avoided installing these older libraries system wide. Had I not previously created the VM I would have resorted to either downloading the missing libraries from elsewhere or building from source.
 
 ```
 $ cd ~/PwnAdventure3_Client/PwnAdventure3/Binaries/Linux                                                                                 
@@ -31,6 +31,6 @@ drwxr-xr-x 3 james james     4096 May 19  2019 ..
 It's also important to note that for the client to connect the server successfully:
 - The server must be running
 - The server.ini has to be configured correctly
-- The client biary must be started from within the folder it is located in i.e. `cd ~/PwnAdventure3_Client/PwnAdventure3/Binaries/Linux` followed by `./PwnAdventure3-Linux-Shipping` or alternativly navigating to the folder in a file manager and then double clicking on the icon.
+- The client binary must be started from within the folder it is located in i.e. `cd ~/PwnAdventure3_Client/PwnAdventure3/Binaries/Linux` followed by `./PwnAdventure3-Linux-Shipping` or alternatively navigating to the folder in a file manager and then double clicking on the icon.
 
 
